@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Custom Fonts -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta name="description" content="{MetaDescription}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title><!-- TODO --></title>
+
+    <!-- Tumblr Customizations -->
+    <meta name="text:Twitter Name" content="" />
+    <meta name="text:Google Analytics ID" content="" />
+    <meta name="text:Disqus Shortname" content="" />
+    <meta name="image:Header" content=""/>
+
+    <link rel="shortcut icon" href="{Favicon}">
+    <link rel="alternate" type="application/rss+xml" title="{Title}" href="{RSS}" />
+
+    <!-- Skeleton Grid by Dave Gamache -->
+    <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/2owmtkp/IZwm5hb2e/skeleton.css" />
+    <!-- Theme styles (also based on Skeleton Defaults) -->
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/keepers.css" />
+
+    <!-- Tumblr Custom CSS -->
+    <style type="text/css">{CustomCSS}</style>
+
+<!-- Styles -->
+</head>
+
+<body>
+<div class="container">
+
+	<header class="header">
+		<h1>{Title}</h1>
+
+		<nav>
+			<ul>
+				<li><a href="/" title="Home">Home</a></li>
+				{block:Pages}
+					<li><a href="{URL}" title="{Label}">{Label}</a></li>
+				{/block:Pages}
+				{block:Twitter}
+					<li><a href="https://twitter.com/{TwitterUsername}" title="@{TwitterUsername}">Twitter</a></li>
+				{/block:Twitter}
+			</ul>
+		</nav>
+
+	<form action="/search" method="get">
+	    <input type="text" name="q" value="{SearchQuery}"/>
+	    <input type="submit" value="Search"/>
+	</form>
+
+	</header>
+
+	<section class="content eight columns">
+	    {block:Posts} <!-- Rendered for each post once on the homepage, and for the post in question on permalink pages. -->
+	    <article class="">
+
+	    	<h3 class="permalink-line"></h3>
+	    	{block:Title}<h2><a href="{Permalink}" target="_blank" title="{Title}">{Title}</a></h2>{/block:Title}
+
+	    	{block:RebloggedFrom}
+	    		<h3>Reblogged from: <a href="{ReblogRootURL}" title="{ReblogRootTitle}" target="_blank">{ReblogRootTitle}</a></h3>
+	    	{/block:RebloggedFrom}
+
+	    	<!-- I operate on the assumption that since a post may or may not have a title in the first place (there is little consistency) there's no real need to include a permalink in titles, especially if I make the permalink obvious.
+		    -->
+
+    		{block:Title}<h2>{Title}</h2>{/block:Title}
+
+	    	<!-- Post Types -->
+	    	{block:Text}
+	    		{Body}
+	    	{/block:Text}
+
+	    	{block:Photo}
+	    		{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" title="{Title}"/>{LinkCloseTag}
+	    		{block:Caption}{Caption}{/block:Caption}
+	    	{/block:Photo}
+
+	    	{block:Photoset}
+				{Photoset-500}
+	    		{block:Caption}{Caption}{/block:Caption}
+	    	{/block:Photoset}
+
+	    	{block:Quote}
+                <blockquote>
+                    {Quote}
+                    {block:Source}<cite>{Source}</cite>{/block:Source}
+                </blockquote>
+	    	{/block:Quote}
+
+	    	{block:Link}
+			    <h3>Link: <a href="{URL}" title="{Title}" target="_blank">{Name}</a></h3>
+			    {block:Description}{Description}{/block:Description}
+	    	{/block:Link}
+
+	    	{block:Chat}
+	    		<ul>
+    	        {block:Lines}
+                    <li class="{Alt}">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</li>
+                {/block:Lines}
+	            </ul>
+	    	{/block:Chat}
+
+	    	{block:Audio}
+                {AudioPlayerGrey}<br />
+                <b>{block:Artist}{Artist}{/block:Artist}</b> &mdash; {block:TrackName}“{TrackName}”{/block:TrackName}
+                {block:Caption}{Caption}{/block:Caption}
+	    	{/block:Audio}
+
+	    	{block:Video}
+	            {Video-500}
+                {block:Caption}{Caption}{/block:Caption}
+	    	{/block:Video}
+
+	    	{block:Answer}
+	    		<blockquote>{Question}
+	    			<cite>{Asker}</cite>
+	    		</blockquote>
+	    		{Answer}
+	    	{/block:Answer}
+
+	    	<!-- Advertisements
+	    	{block:Post5}{/block:Post5}
+		    -->
+
+	    </article>
+	    {/block:Posts}
+	</section>
+
+	<footer class="footer">
+		Powered by Tumblr and the “Keepers” Theme
+	</footer>
+
+
+	<!-- Disqus Support -->
+    {block:IfDisqusShortname}
+   	{block:PermalinkPage} <!-- Only render on post pages! -->
+   		{block:Date} <!-- Hack! Since these don't get rendered on static pages, I can use it to avoid having comment threads on static pages -->
+    	<!-- Append comment threads to individual posts -->
+	    <script type="text/javascript">var disqus_url = "{Permalink}"; var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";</script>
+	        <div id="disqus_thread" class="ten columns offset-by-three row"></div>
+	        <script type="text/javascript">
+	          var disqus_identifier = {PostID}; // Helps with renaming of posts, changing slugs, etc
+	          (function() {
+	           var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	           dsq.src = 'http://{text:Disqus Shortname}.disqus.com/embed.js';
+	           (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	          })();
+	        </script>
+	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript={text:Disqus Shortname}">comments powered by Disqus.</a></noscript>
+	        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+	    {/block:Date}
+
+	    <!-- Append counts to each post -->
+	    <script type="text/javascript">
+		    var disqus_shortname = '{text:Disqus Shortname}';
+	        (function () {
+	          var s = document.createElement('script'); s.async = true;
+	          s.src = 'http://{text:Disqus Shortname}.disqus.com/count.js';
+	          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+	        }());
+        </script>
+    {/block:PermalinkPage}
+    {block:IfDisqusShortname}
+
+    <!-- Google Analytics -->
+    {block:IfGoogleAnalyticsID}
+        <script type="text/javascript">var gaJsHost=(("https:"==document.location.protocol)?"https://ssl.":"http://www.");document.write(unescape("%3Cscript src='"+gaJsHost+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">try{var pageTracker=_gat._getTracker("{text:Google Analytics ID}");pageTracker._trackPageview()}catch(err){}</script>
+    {/block:IfGoogleAnalyticsID}
+
+</div>
+</body>
