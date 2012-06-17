@@ -16,7 +16,7 @@
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <title><!-- TODO --></title>
+	<title>{Title}{block:PostSummary} | {PostSummary}{/block:PostSummary}</title>
 
     <!-- Tumblr Customizations -->
     <meta name="text:Twitter Name" content="" />
@@ -28,7 +28,7 @@
     <link rel="alternate" type="application/rss+xml" title="{Title}" href="{RSS}" />
 
     <!-- Theme styles (also based on Skeleton Defaults) -->
-    <link rel="stylesheet" type="text/css" href="http://localhost:8080/keepers.css" />
+    <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/2owmtkp/Yufm5s49o/keepers.css" />
     <!-- Skeleton Grid by Dave Gamache -->
     <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/2owmtkp/IZwm5hb2e/skeleton.css" />
 
@@ -76,6 +76,15 @@ li {
 	line-height: 36px;
 }
 
+nav ul li {
+	display: inline-block;
+}
+
+article img {
+    max-width: 100%;
+    height: auto;
+}
+
 </style>
 
     <style type="text/css">{CustomCSS}</style>
@@ -88,6 +97,11 @@ li {
 
 	<header class="header sixteen columns add-top">
 		<h1>{Title}</h1>
+
+		<div style="position: relative; height: 216px;">
+			<img src="http://static.tumblr.com/2owmtkp/hjBm5s47c/mountains-cyan.png" class="scale-with-grid" style="position: absolute; left: 0; opacity: 0.75;" />
+			<img src="http://static.tumblr.com/2owmtkp/0gzm5s483/mountains-magenta.png" class="scale-with-grid" style="position: absolute; right: 0; opacity: 0.75;" />
+		</div>
 
 		<nav>
 			<ul>
@@ -115,10 +129,8 @@ li {
 	    		</h3>
 	    	{/block:Date}
 
-	    	{block:Title}<h2><a href="{Permalink}" target="_blank" title="{Title}">{Title}</a></h2>{/block:Title}
-
 	    	{block:RebloggedFrom}
-	    		<h3>Reblogged from: <a href="{ReblogRootURL}" title="{ReblogRootTitle}" target="_blank">{ReblogRootTitle}</a></h3>
+	    		<h3 style="margin-bottom: 36px;">Reblogged from: <a href="{ReblogRootURL}" title="{ReblogRootTitle}" target="_blank">{ReblogRootTitle}</a></h3>
 	    	{/block:RebloggedFrom}
 
 	    	<!-- I decided that I don't want any posts to have titles, at all. Most of them don't have titles, and for text posts the heading belongs inside the content. -->
@@ -207,6 +219,13 @@ li {
 	</section>
 
 	<footer class="footer sixteen columns add-bottom">
+	    {block:Pagination}
+        <section class="pagination">
+            {block:PreviousPage}<a href="{PreviousPage}" id="pageNavNewer">← Newer</a>{/block:PreviousPage}
+            {block:NextPage}<a href="{NextPage}" id="pageNavOlder">Older →</a>{/block:NextPage}
+        </section>
+	    {/block:Pagination}
+
 		— Powered by Tumblr and the “Keepers” Theme —
 	</footer>
 
