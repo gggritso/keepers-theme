@@ -39,8 +39,7 @@
 
     body {
         background-image: url("http://localhost:8080/handmadepaper.png");
-        font: 20px/22px "Goudy Bookletter 1911", "Georgia", "Times", sans-serif;
-        line-height: 26px;
+        font: 24px/36px "Belgrano", "Georgia", serif;
         color: #444;
         -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
         -webkit-text-size-adjust: 100%;
@@ -50,32 +49,26 @@
 
 /* #Typography
 ================================================== */
-    @font-face {
-      font-family: 'Goudy Bookletter 1911', 'Georgia', serif;
-      font-style: normal;
-      font-weight: normal;
-      src: local('Goudy Bookletter 1911'), local('GoudyBookletter1911'), url('http://themes.googleusercontent.com/static/fonts/goudybookletter1911/v3/l5lwlGTN3pEY5Bf-rQEuIM1yrN2lJveIMQB3sFVC2WOglnMp3_3A8V8Ai8YosRtX.woff') format('woff');
-    }
 
     h1, h2, h3, h4, h5, h6 {
         color: #444;
         clear: both;
         text-shadow: rgba(255, 255, 255, 0.3) 0 1px 2px;
-        font-family: "Goudy Bookletter 1911", "Georgia", "Times New Roman", Helvetica, Arial, sans-serif; /* TODO */
+        font-family: "Varela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
         font-weight: normal; }
     h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
-    h1 { font-size: 46px; line-height: 50px; margin: 0 10px 13px 10px;}
-    h2 { font-size: 32px; line-height: 32px; margin-bottom: 13px; }
-    h3 { font-size: 28px; line-height: 34px; margin-bottom: 8px; }
-    h4 { font-size: 21px; line-height: 32px; margin-bottom: 4px; }
-    h5 { font-size: 17px; line-height: 24px; }
-    h6 { font-size: 14px; line-height: 21px; }
+    h1 { font-size: 48px; line-height: 72px; }
+    h2 { font-size: 40px; line-height: 72px; }
+    h3 { font-size: 32px; line-height: 36px; }
+    h4 { font-size: 24px; line-height: 36px; }
+    h5 { font-size: 16px; line-height: 24px; }
+    h6 { font-size: 8px; line-height: 12px; }
     .subheader { color: #777; }
 
-    p { margin: 0 0 26px 0; }
+    p { margin: 0 0 36px 0; }
     p {text-shadow: rgba(255, 255, 255, 0.3) 0 1px 2px;}
     p img { margin: 0; }
-    .lead { font-size: 21px; line-height: 27px; color: #777;  }
+    .lead { font-size: 32px; line-height: 40px; color: #777;  }
 
     em { font-style: italic; }
     code { font-family: monospace; }
@@ -83,36 +76,33 @@
     small { font-size: 80%; }
 
 /*  Blockquotes  */
-    blockquote, blockquote p { font-size: 20px; line-height: 26px; color: #777; font-style: italic; }
-    blockquote { margin: 0 0 26px; padding: 9px 26px 0 13px; border-left: 1px solid #ddd; }
-    blockquote cite { display: block; font-size: 16px; color: #555; }
+    blockquote, blockquote p { color: #777; }
+    blockquote { margin: 0 0 36px; padding: 0 18px 0 18px; border-left: 1px solid #ddd; }
+    blockquote cite { display: block; color: #555; }
     blockquote cite:before { content: "\2014 \0020"; }
     blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
 
-    hr { border: solid #ddd; border-width: 1px 0 0; clear: both; height: 0; margin: 15px 0 26px 0;}
+    hr { border: solid #ddd; border-width: 1px 0 0; clear: both; height: 0; height: 35px; margin: 0; }
 
 
 /* #Links
 ================================================== */
-    a, a:visited { color: #333; text-decoration: underline; outline: 0; }
+    a, a:visited { color: #333; text-decoration: underline; }
     a:hover, a:focus { color: #000; }
 
 
 /* #Lists
 ================================================== */
-    ul, ol { margin-bottom: 26px; }
+    ul, ol { margin-bottom: 36px; }
     ul { list-style: none outside; }
     ol { list-style: decimal; }
     ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
     ul.square { list-style: square outside; }
     ul.circle { list-style: circle outside; }
     ul.disc { list-style: disc outside; }
-    ul ul, ul ol,
-    ol ol, ol ul { margin: 4px 0 5px 26; font-size: 90%;  }
-    ul ul li, ul ol li,
-    ol ol li, ol ul li { margin-bottom: 6px; }
-    li { line-height: 26px; margin-bottom: 13px; }
-    li p { line-height: 26px; }
+
+    li { line-height: 36px; }
+    li p { line-height: 36px; }
 
 /* #Images
 ================================================== */
@@ -120,14 +110,17 @@
 	/* Whoa, handy! */
     .scale-with-grid {
         max-width: 100%;
-        height: auto; }
+        height: auto;
+        margin-bottom: 36px;
+    }
 
 
 /* #Misc
 ================================================== */
-    .remove-bottom { margin-bottom: 0 !important; }
-    .half-bottom { margin-bottom: 13px !important; }
-    .add-bottom { margin-bottom: 26px !important; }
+    .remove-bottom { margin-bottom: 0 }
+    .half-bottom { margin-bottom: 13px }
+    .add-bottom { margin-bottom: 36px }
+    .add-top { margin-top: 36px }
 
 
 /* Responsive Embeds from http://amobil.se/2011/11/responsive-embeds/
@@ -135,7 +128,7 @@
 .embed-container {
     position: relative;
     padding-bottom: 56.25%; /* 16/9 ratio */
-    padding-top: 30px; /* IE6 workaround*/
+    padding-top: 36px; /* IE6 workaround*/
     height: 0;
     overflow: hidden;
 }
@@ -150,6 +143,3 @@
     height: 100%;
 }
 
-
-/* Theme Specifics
-================================================== */
