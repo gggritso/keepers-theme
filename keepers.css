@@ -38,7 +38,6 @@
 ================================================== */
 
     body {
-        background-image: url("http://localhost:8080/handmadepaper.png");
         background-image: url("http://static.tumblr.com/2owmtkp/Mbfm5shfz/handmadepaper.png");
         font: 24px/36px "Belgrano", "Georgia", serif;
         color: #444;
@@ -79,7 +78,7 @@
 /*  Blockquotes  */
     blockquote, blockquote p { color: #777; }
     blockquote { margin: 0 0 36px; padding: 0 18px 0 18px; border-left: 1px solid #ddd; }
-    blockquote cite { display: block; color: #555; }
+    blockquote cite { display: block; color: #555; margin-top: 36px; }
     blockquote cite:before { content: "\2014 \0020"; }
     blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
 
@@ -132,6 +131,7 @@
     padding-top: 36px; /* IE6 workaround*/
     height: 0;
     overflow: hidden;
+    margin-bottom: 36px;
 }
 
 .embed-container iframe,
