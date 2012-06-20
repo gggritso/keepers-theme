@@ -39,6 +39,7 @@
 
     body {
         background-image: url("http://localhost:8080/handmadepaper.png");
+        background-image: url("http://static.tumblr.com/2owmtkp/Mbfm5shfz/handmadepaper.png");
         font: 24px/36px "Belgrano", "Georgia", serif;
         color: #444;
         -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */

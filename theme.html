@@ -28,7 +28,7 @@
     <link rel="alternate" type="application/rss+xml" title="{Title}" href="{RSS}" />
 
     <!-- Theme styles (also based on Skeleton Defaults) -->
-    <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/2owmtkp/Yufm5s49o/keepers.css" />
+    <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/2owmtkp/hJXm5tjuc/keepers.css" />
     <!-- Skeleton Grid by Dave Gamache -->
     <link rel="stylesheet" type="text/css" href="http://static.tumblr.com/2owmtkp/IZwm5hb2e/skeleton.css" />
 
@@ -45,30 +45,41 @@
 
 /* Theme Specifics
 ================================================== */
+h1 a {
+	text-decoration: none;
+}
 
 /* Set some body elements with the sans-serif font */
-nav, .tag-list, .permalink {
+nav, .tag-list, .permalink, .footer {
 	font-family: "Varela Round", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	text-transform: uppercase;
 }
 
-/* Major Sections */
-.header {
-	text-align: center;
-}
+/* CYAN: #009ec2 */
+/* MAGENTA: #c200a8 */
 
-.footer {
+/* Major Sections */
+.header, .footer {
 	text-align: center;
-	font-size: 16px;
 }
 
 /* Specifics */
-.permalink, .tag-list {
-	font-size: 12px;
+.permalink, .tag-list, .pagination, .footer {
+	font-size: 14px;
+	color: #009ec2;
+}
+
+.tag-list a, .permalink a, .pagination a {
+	text-decoration: none;
+	color: #009ec2;
 }
 
 .tag-list {
-	text-decoration: none;
+	margin-bottom: 36px;
+}
+
+.post-link h4 a {
+	color: #c200a8;
 }
 
 li {
@@ -78,11 +89,28 @@ li {
 
 nav ul li {
 	display: inline-block;
+	font-size: 18px;
 }
 
 article img {
     max-width: 100%;
     height: auto;
+}
+
+.overlap-container {
+	position: relative;
+	height: 216px;
+}
+
+pre {
+	margin-bottom: 36px;
+	overflow-x: auto;
+}
+
+@media only screen and (max-width: 767px) {
+	.overlap-container {
+		height: 144px;
+	}
 }
 
 </style>
@@ -95,12 +123,12 @@ article img {
 <body>
 <div class="container">
 
-	<header class="header sixteen columns add-top">
-		<h1>{Title}</h1>
+	<header class="header twelve columns offset-by-two add-top">
+		<h1><a href="/" title="Home">{Title}</a></h1>
 
-		<div style="position: relative; height: 216px;">
-			<img src="http://static.tumblr.com/2owmtkp/hjBm5s47c/mountains-cyan.png" class="scale-with-grid" style="position: absolute; left: 0; opacity: 0.75;" />
-			<img src="http://static.tumblr.com/2owmtkp/0gzm5s483/mountains-magenta.png" class="scale-with-grid" style="position: absolute; right: 0; opacity: 0.75;" />
+		<div class="overlap-container">
+			<img src="http://static.tumblr.com/2owmtkp/0gzm5s483/mountains-magenta.png" class="scale-with-grid" style="position: absolute; right: 0; top: 0; opacity: 0.75;" />
+			<img src="http://static.tumblr.com/2owmtkp/hjBm5s47c/mountains-cyan.png" class="scale-with-grid" style="position: absolute; left: 0; top: 0; opacity: 0.75;" />
 		</div>
 
 		<nav>
@@ -118,9 +146,9 @@ article img {
 	<hr />
 	</header>
 
-	<section class="sixteen columns">
+	<section class="twelve columns offset-by-two">
 	    {block:Posts} <!-- Rendered for each post once on the homepage, and for the post in question on permalink pages. -->
-	    <article class="">
+	    <article class="post-{PostType}">
 
 	    	{block:Date}
 	    		<h3 class="permalink"><a href="{Permalink}">∞ {ShortDayOfWeek}, {ShortMonth} {DayOfMonth} {Year}</a>
@@ -128,10 +156,6 @@ article img {
 	    			{block IfDisqusShortname} | <a class="dsq-comment-count" href="{Permalink}#disqus_thread">0 Comments</a>{/block:IfDisqusShortname}
 	    		</h3>
 	    	{/block:Date}
-
-	    	{block:RebloggedFrom}
-	    		<h3 style="margin-bottom: 36px;">Reblogged from: <a href="{ReblogRootURL}" title="{ReblogRootTitle}" target="_blank">{ReblogRootTitle}</a></h3>
-	    	{/block:RebloggedFrom}
 
 	    	<!-- I decided that I don't want any posts to have titles, at all. Most of them don't have titles, and for text posts the heading belongs inside the content. -->
 
@@ -162,7 +186,7 @@ article img {
 	    	{/block:Quote}
 
 	    	{block:Link}
-			    <h3 style="margin-bottom: 36px;">Link: <a href="{URL}" title="{Title}" target="_blank">{Name}</a></h3>
+			    <h4 style="margin-bottom: 36px;">Link: <a href="{URL}" title="{Title}" target="_blank">{Name}</a></h4>
 			    {block:Description}{Description}{/block:Description}
 	    	{/block:Link}
 
@@ -200,15 +224,17 @@ article img {
 	    	{block:Post5}{/block:Post5}
 		    -->
 
+	    	{block:RebloggedFrom}
+	    		<h4>(Reblogged from: <a href="{ReblogRootURL}" title="{ReblogRootTitle}" target="_blank">{ReblogRootTitle}</a>)</h4>
+	    	{/block:RebloggedFrom}
+
             <!-- Tag list after every post -->
-            {block:HasTags}
                 <div class="tag-list">
                     tags:
                     {block:Tags}
-                        <a href="{TagURL}" title="Tagged: {Tag}" target="_blank">{Tag}</a>
+                        <a href="{TagURL}" title="Tagged: {URLSafeTag}" target="_blank">{URLSafeTag}</a>
                     {/block:Tags}
                 </div>
-            {/block:HasTags}
 
             <!-- Notes after every post -->
             {block:PostNotes}{PostNotes}{/block:PostNotes}
@@ -218,25 +244,13 @@ article img {
 	    {/block:Posts}
 	</section>
 
-	<footer class="footer sixteen columns add-bottom">
-	    {block:Pagination}
-        <section class="pagination">
-            {block:PreviousPage}<a href="{PreviousPage}" id="pageNavNewer">← Newer</a>{/block:PreviousPage}
-            {block:NextPage}<a href="{NextPage}" id="pageNavOlder">Older →</a>{/block:NextPage}
-        </section>
-	    {/block:Pagination}
-
-		— Powered by Tumblr and the “Keepers” Theme —
-	</footer>
-
-
 	<!-- Disqus Support -->
     {block:IfDisqusShortname}
    	{block:PermalinkPage} <!-- Only render on post pages! -->
-   		{block:Date} <!-- Hack! Since these don't get rendered on static pages, I can use it to avoid having comment threads on static pages -->
+   		<!-- Hack! Since these don't get rendered on static pages, I can use it to avoid having comment threads on static pages -->
     	<!-- Append comment threads to individual posts -->
 	    <script type="text/javascript">var disqus_url = "{Permalink}"; var disqus_title ="{block:PostTitle}{PostTitle}{/block:PostTitle}";</script>
-	        <div id="disqus_thread" class="ten columns offset-by-three row"></div>
+	        <div id="disqus_thread" class="twelve columns offset-by-two"></div>
 	        <script type="text/javascript">
 	          var disqus_identifier = {PostID}; // Helps with renaming of posts, changing slugs, etc
 	          (function() {
@@ -246,8 +260,6 @@ article img {
 	          })();
 	        </script>
 	        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript={text:Disqus Shortname}">comments powered by Disqus.</a></noscript>
-	        <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
-	    {/block:Date}
 
 	    <!-- Append counts to each post -->
 	    <script type="text/javascript">
@@ -265,6 +277,19 @@ article img {
     {block:IfGoogleAnalyticsID}
         <script type="text/javascript">var gaJsHost=(("https:"==document.location.protocol)?"https://ssl.":"http://www.");document.write(unescape("%3Cscript src='"+gaJsHost+"google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));</script><script type="text/javascript">try{var pageTracker=_gat._getTracker("{text:Google Analytics ID}");pageTracker._trackPageview()}catch(err){}</script>
     {/block:IfGoogleAnalyticsID}
+
+	<footer class="footer twelve columns offset-by-two add-bottom">
+	    {block:Pagination}
+        <section class="pagination">
+        	<a href="/page/1" style="float: left;">↤ Newest</a>
+            {block:PreviousPage}<a href="{PreviousPage}" id="pageNavNewer">← Newer</a>{/block:PreviousPage}
+            {block:PreviousPage}{block:NextPage} | {/block:NextPage}{/block:PreviousPage}
+            {block:NextPage}<a href="{NextPage}" id="pageNavOlder">Older →</a>{/block:NextPage}
+            <a href="/page/{TotalPages}" style="float: right;">Oldest ↦</a>
+        </section>
+	    {/block:Pagination}
+	    <span style="font-size: 36px;">❦</span>
+	</footer>
 
 </div>
 </body>
